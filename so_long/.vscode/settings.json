@@ -1,0 +1,10 @@
+{
+	"makefile.extensionOutputFolder": "./.vscode",
+	"files.associations": {
+		"so_long.h": "c",
+		"stdio.h": "c",
+		"libft.h": "c",
+		"fcntl.h": "c",
+		"unistd.h": "c"
+	}
+}

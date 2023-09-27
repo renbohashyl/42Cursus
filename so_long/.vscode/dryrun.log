@@ -1,0 +1,14 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/jbak/42seoul/so_long'
+mkdir -p ./obj/
+make -sC ./minilibx-linux
+make -sC ./libfts
+cc -Wall -Wextra -Werror -g3 -I ./libfts/ -I ./minilibx-linux/ -I ./inc/ -o obj/so_long.o -c src/so_long.c
+cc -Wall -Wextra -Werror -g3 -I ./libfts/ -I ./minilibx-linux/ -I ./inc/ -o obj/valid_check.o -c src/valid_check.c
+cc -Wall -Wextra -Werror -g3 -I ./libfts/ -I ./minilibx-linux/ -I ./inc/ -o obj/init.o -c src/init.c
+cc -Wall -Wextra -Werror -g3 -I ./libfts/ -I ./minilibx-linux/ -I ./inc/ -o obj/events.o -c src/events.c
+cc -Wall -Wextra -Werror -g3 -I ./libfts/ -I ./minilibx-linux/ -I ./inc/ -o obj/freeit.o -c src/freeit.c
+cc -Wall -Wextra -Werror -g3 -I ./libfts/ -I ./minilibx-linux/ -I ./inc/ -o obj/getimgs.o -c src/getimgs.c
+cc -Wall -Wextra -Werror -g3 ./obj/so_long.o ./obj/valid_check.o ./obj/init.o ./obj/events.o ./obj/freeit.o ./obj/getimgs.o -L ./libfts/ -l ft -L ./minilibx-linux -l mlx -lm -lXext -lX11 -o so_long
+make: Leaving directory '/home/jbak/42seoul/so_long'
+ 
