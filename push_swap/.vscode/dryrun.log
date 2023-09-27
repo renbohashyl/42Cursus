@@ -1,0 +1,18 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/jbak/push_swap'
+gcc -Wall -Wextra -Werror -c ft_split.c -o ft_split.o
+gcc -Wall -Wextra -Werror -c push_swap.c -o push_swap.o
+gcc -Wall -Wextra -Werror -c push_swap_node_control.c -o push_swap_node_control.o
+gcc -Wall -Wextra -Werror -c push_swap_rules_push_and_rotate.c -o push_swap_rules_push_and_rotate.o
+gcc -Wall -Wextra -Werror -c push_swap_rules_reverse_rotate.c -o push_swap_rules_reverse_rotate.o
+gcc -Wall -Wextra -Werror -c push_swap_rules_swap.c -o push_swap_rules_swap.o
+gcc -Wall -Wextra -Werror -c push_swap_sort.c -o push_swap_sort.o
+gcc -Wall -Wextra -Werror -c push_swap_sort_a_control.c -o push_swap_sort_a_control.o
+ 
+gcc -Wall -Wextra -Werror -c push_swap_sort_b_control.c -o push_swap_sort_b_control.o
+gcc -Wall -Wextra -Werror -c push_swap_stack_control.c -o push_swap_stack_control.o
+gcc -Wall -Wextra -Werror -c push_swap_utils.c -o push_swap_utils.o
+gcc -Wall -Wextra -Werror -c push_swap_utils_libft.c -o push_swap_utils_libft.o
+gcc -Wall -Wextra -Werror ft_split.o push_swap.o push_swap_node_control.o push_swap_rules_push_and_rotate.o push_swap_rules_reverse_rotate.o push_swap_rules_swap.o push_swap_sort.o push_swap_sort_a_control.o push_swap_sort_b_control.o push_swap_stack_control.o push_swap_utils.o push_swap_utils_libft.o -o push_swap
+make: Leaving directory '/home/jbak/push_swap'
+ 
