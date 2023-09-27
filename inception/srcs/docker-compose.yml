@@ -1,0 +1,81 @@
+version: '3'
+
+services:
+  mariadb:
+    container_name: mariadb
+    restart: always
+    build:
+      context: ./requirements/mariadb
+      dockerfile: ./Dockerfile
+    expose:
+      - 3306
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - intra
+    env_file:
+      - .env
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-u', 'mysql', '-p${MYSQL_ROOT_PASSWORD?REQUIRED}']
+      interval: 10s
+      timeout: 2s
+      retries: 2
+
+  wordpress:
+    container_name: wordpress
+    restart: on-failure
+    build:
+      context: ./requirements/wordpress/
+      dockerfile: ./Dockerfile
+    expose:
+      - 9000
+    volumes:
+      - web-data:/var/www/html
+    networks:
+      - intra
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    env_file:
+      - .env_wordpress
+    healthcheck:
+      test: ['CMD', 'service', 'php7.4-fpm', 'status']
+      interval: 10s
+      timeout: 2s
+      retries: 2
+
+  nginx:
+    container_name: nginx
+    restart: on-failure
+    build:
+      context: ./requirements/nginx/
+      dockerfile: ./Dockerfile
+    ports:
+      - "443:443"
+    volumes:
+      - web-data:/var/www/html
+    networks:
+      - intra
+    depends_on:
+      wordpress:
+        condition: service_healthy
+    env_file:
+      - .env_nginx
+
+networks:
+  intra:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${DATA_PATH}/${DB_NAME}
+  web-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${DATA_PATH}/${WEB_NAME}
