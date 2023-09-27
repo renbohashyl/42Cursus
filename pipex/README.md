@@ -1,7 +1,7 @@
 # pipex
 사용 언어 : C언어   
 학습 목표 : 쉘에서의 입출력 제어 그리고 쉘 명령어를 수행(ls, cat 등)하는 프로그램 제작   
-학습 개념 : fd 제어, execve, 프로세스 제어, pipe
+학습 개념 : fd 제어, execve, 멀티 프로세싱의 병렬처리, pipe
 
 # details
 get_next_line에서 배운 것이 fd의 개념이었고, 이번에는 그 fd를 직접 제어하는 과제이다.  
