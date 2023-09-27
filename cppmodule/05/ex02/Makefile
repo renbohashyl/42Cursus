@@ -1,0 +1,41 @@
+NAME		= No,_you_need_form_28B,_not_28C
+
+SRCS		= main.cpp						\
+			  Bureaucrat.cpp				\
+			  AForm.cpp						\
+			  PresidentialPardonForm.cpp	\
+			  RobotomyRequestForm.cpp		\
+			  ShrubberyCreationForm.cpp
+
+OBJS		= $(addprefix $(OBJDIR),$(SRCS:.cpp=.o))
+
+CXX			= c++
+CXXFLAG		= -Wall -Wextra -Werror -std=c++98 $(DBGFLAG)
+DBGFLAG		= -g3
+LEAKFLAG	= -fsanitize=address
+
+#dirs
+SRCDIR		= ./src/
+INCDIR		= -I ./inc/
+OBJDIR		= ./obj/
+
+all : $(OBJDIR) $(NAME)
+
+$(OBJDIR) :
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)%.o : $(SRCDIR)%.cpp
+	$(CXX) $(CXXFLAG) $(INCDIR) -o $@ -c $<
+
+$(NAME) : $(OBJS)
+	$(CXX) $(CXXFLAG) $(OBJS) -o $(NAME)
+
+clean :
+	rm -rf $(OBJDIR)
+
+fclean : clean
+	rm -f $(NAME)
+
+re : fclean all
+
+.PHONY : clean fclean re all
